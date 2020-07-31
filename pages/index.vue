@@ -1,9 +1,6 @@
 <template>
   <div class="max-w-sm m-auto my-8">
 
-    <div>
-      {{ $config }}
-    </div>
     <div class="border p-10 rounded shadow">
       <h3 class="text-2xl mb-6">Sign In</h3>
 
