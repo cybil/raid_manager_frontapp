@@ -1,6 +1,9 @@
 require('dotenv').config()
 
 export default {
+  env: {
+    baseUrl: process.env.API_URL || 'http://localhost:3000'
+  },
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -30,6 +33,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/css/main.css'
   ],
   /*
   ** Plugins to load before mounting the App

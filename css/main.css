@@ -1,0 +1,144 @@
+
+.hide {
+  display: none;
+}
+
+.global-bg {
+  background-color: #fff;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-align-center {
+  justify-content: center;
+}
+
+.flex-align-between {
+  justify-content: space-between;
+}
+
+.flex-items-center {
+  align-items: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+td {
+  text-align: left;
+}
+
+.logo-role {
+  width: 25px;
+  min-width: 25px;
+  height: 25px;
+}
+
+.class-selector {
+  position: relative;
+  min-width: 150px;
+}
+.class-selector-current:hover {
+  font-weight: bold;
+  border: 1px solid #868e96;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+.class-selector-current {
+  width: 100%;
+  padding: 3px;
+  cursor: pointer;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+}
+.class-selector-list {
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: 10;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+}
+.class-selector-item:hover {
+  font-weight: bold;
+}
+.class-selector-item {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.class-select-wrapper {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+
+/* WoW Class colors */
+
+.text-warrior {
+  color: #c69b6d;
+}
+.bg-warrior {
+  background-color: #c69b6d;
+}
+.text-priest {
+  color: #fff;
+  background-color: #ced4da;
+}
+.bg-priest {
+  color: #ced4da;
+  background-color: #fff;
+}
+.text-warlock {
+  color: #9382c9;
+}
+.bg-warlock {
+  background-color: #9382c9;
+}
+.text-shaman {
+  color: #2359ff;
+}
+.bg-shaman {
+  background-color: #2359ff;
+}
+.text-rogue {
+  color: #fff468;
+}
+.bg-rogue {
+  background-color: #fff468;
+}
+.text-mage {
+  color: #68ccef;
+}
+.bg-mage {
+  background-color: #68ccef;
+}
+.text-druid {
+  color: #ff7c0a;
+}
+.bg-druid {
+  background-color: #ff7c0a;
+}
+.text-hunter {
+  color: #aad372;
+}
+.bg-hunter {
+  background-color: #aad372;
+}

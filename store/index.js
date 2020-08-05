@@ -22,13 +22,14 @@ export const getters = {
   globalError: state => state.globalError,
   userCharacters: state => state.userCharacters,
   rosters: state => state.rosters,
-  basicCompos: state => state.basicCompos
+  basicCompos: state => state.basicCompos,
+  allCharacters: state => state.allCharacters
 }
 
 
 // MUTATIONS
 export const mutations = {
-  initialiseStore (state) {
+  INITIALIZE_STORE: (state) => {
     if (localStorage.getItem('user')) {
       state.currentUser = JSON.parse(localStorage.getItem('user'))
     } else {
@@ -75,7 +76,7 @@ export const mutations = {
     state.rosters[state.rosters.indexOf(roster.id)] = roster
   },
   DELETE_ROSTER: (state, roster) => {
-    state.rosters.splice(roster.indexOf(roster), 1)
+    state.rosters.splice(state.rosters.indexOf(roster), 1)
   },
   SET_BASIC_COMPOS: (state, compos) => {
     state.basicCompos = compos
@@ -87,15 +88,20 @@ export const mutations = {
     state.rosters[state.basicCompos.indexOf(compo.id)] = compo
   },
   DELETE_BASIC_COMPO: (state, compo) => {
-    state.basicCompos.splice(compo.indexOf(compo), 1)
+    state.basicCompos.splice(state.basicCompos.indexOf(compo), 1)
   }
 }
 
 
 // ACTIONS
 export const actions = {
+  initializeStore: (store) => {
+    store.commit('INITIALIZE_STORE')
+  },
+  clearError: (store) => {
+    store.commit('RESET_GLOBAL_ERROR')
+  },
   signin: (store, user) => {
-    debugger;
     store.commit('RESET_GLOBAL_ERROR')
     return plainAxiosInstance.post('/signin', {
       name: user.name,
@@ -182,9 +188,9 @@ export const actions = {
   createRoster: (store, roster) => {
     return securedAxiosInstance.post('/api/v1/rosters', {
       roster: {
-        name: this.newroster.name
+        name: roster.name
       },
-      compo_id: this.newroster.compoId
+      compo_id: roster.compoId
     }).then(response => {
       store.commit('ADD_ROSTER', response.data)
     }).catch(error => {
@@ -193,7 +199,7 @@ export const actions = {
   },
   updateRosterSlot: (store, rosterSlot) => {
     return securedAxiosInstance.patch(`/api/v1/rosters/${rosterSlot.rosterId}/update_slot`, {
-      slot_id: rosterSlot.currentSlotIdd,
+      slot_id: rosterSlot.currentSlotId,
       character_id: rosterSlot.selectedChar,
       role: rosterSlot.selectedRole,
       goal: rosterSlot.selectedGoal,
@@ -216,7 +222,7 @@ export const actions = {
   getBasicCompos: (store) => {
     return securedAxiosInstance.get('/api/v1/basic_compos')
       .then(response => {
-        store.commit('SET_ROSTERS', response.data)
+        store.commit('SET_BASIC_COMPOS', response.data)
       })
       .catch(error => {
         store.commit('SET_GLOBAL_ERROR', error.response.data.error)
@@ -253,5 +259,5 @@ export const actions = {
       .then(response => {
         store.commit('DELETE_BASIC_COMPO', compo)
       })
-  }
+  },
 }

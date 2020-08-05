@@ -1,10 +1,9 @@
 import axios from 'axios'
 
 const API_URL = process.env.API_URL
-// const API_URL = 'http://localhost:3000'
 
 const securedAxiosInstance = axios.create({
-  baseURL: API_URL,
+  baseURL: process.env.baseUrl,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json'
@@ -12,7 +11,7 @@ const securedAxiosInstance = axios.create({
 })
 
 const plainAxiosInstance = axios.create({
-  baseURL: API_URL,
+  baseURL: process.env.baseUrl,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json'
@@ -43,8 +42,11 @@ securedAxiosInstance.interceptors.response.use(null, error => {
       }).catch(error => {
         delete localStorage.csrf
         delete localStorage.signedIn
+        delete localStorage.user
 
-        location.replace('/')
+        if (location.pathname !== '/') {
+          location.replace('/')
+        }
         return Promise.reject(error)
       })
   } else {

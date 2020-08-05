@@ -1,7 +1,6 @@
 <template>
-  <div class="max-w-sm m-auto my-8">
-
-    <div class="border p-10 rounded shadow">
+  <div class="col-md-10 mx-auto mt-3">
+    <div class="border p-4 rounded shadow">
       <h3 class="text-2xl mb-6">Sign In</h3>
 
       <form @submit.prevent="doSignin">
@@ -38,9 +37,7 @@ export default {
     }
   },
   created () {
-    this.checkSignedIn()
-  },
-  updated () {
+    this.clearError()
     this.checkSignedIn()
   },
   computed: {
@@ -49,22 +46,23 @@ export default {
     })
   },
   methods: {
-    ...mapActions({
-      signin: 'signin'
-    }),
+    ...mapActions([
+      'signin',
+      'clearError'
+    ]),
     doSignin () {
-      debugger;
       let that = this
       this.signin({
         name: that.name,
         password: that.password
       }).then((response) => {
         that.checkSignedIn()
+        // ->fetch state
       })
     },
     checkSignedIn () {
       if (localStorage.csrf) {
-        this.$router.replace('/characters')
+        this.$router.replace('/my_characters')
       } else if (this.$router.currentRoute.path !== '/') {
         this.$router.replace('/')
       }
